@@ -16,20 +16,6 @@ Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V-All
 if (Test-PendingReboot) { Invoke-Reboot }
 
 
-### Fonts
-cinst -y inconsolata 
-#cinst -y Hasklig
-cinst -y firacode
-cinst -y sourcecodepro
-cinst -y hackfont
-cinst -y robotofonts
-cinst -y envycoder
-cinst -y dejavufonts
-#cinst -y bitstreamverafonts
-#cinst -y noto
-#cinst -y opensans
-cinst -y font-awesome-font
-
 # Packages
 cinst -y ConEmu
 
@@ -46,7 +32,6 @@ npm install -g npm-windows-upgrade
 ## Editors
 cinst -y visualstudiocode
 cinst -y atom
-if (Test-PendingReboot) { Invoke-Reboot }
 
 ## Basics
 cinst -y Firefox
