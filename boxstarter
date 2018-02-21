@@ -57,6 +57,10 @@ choco install visualstudio2017community
 choco install visualstudio2017-workload-netweb 
 choco install visualstudio2017-workload-netcoretools 
 
+### Configure Powershell
+Install-Package Posh-Git -Source PSGallery
+Invoke-Expression ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/pecigonzalo/Oh-My-Posh/master/install.ps1'))
+
 ### TODO: remove unwanted apps
 #Get-Contents ./app_to_remove.txt | For-Each {  Get-AppxPackage $_ | Remove-AppxPackage }
 

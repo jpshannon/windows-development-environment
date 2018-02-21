@@ -1,6 +1,6 @@
 
 # Load posh-git example profile
-. 'C:\Users\felixr\Documents\WindowsPowerShell\Modules\posh-git\profile.example.ps1'
+Import-Module "Oh-My-Posh" -DisableNameChecking -NoClobber
 
 # Increase history
 $MaximumHistoryCount = 10000
