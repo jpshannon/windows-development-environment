@@ -20,9 +20,7 @@ if (Test-PendingReboot) { Invoke-Reboot }
 cinst -y ConEmu
 
 ## Git
-cinst -y git.install
-cinst -y github
-cinst -y git-credential-manager-for-windows 
+cinst -y git-credential-manager-for-windows #installs git
 
 ## Node, npm
 cinst -y nodejs.install
