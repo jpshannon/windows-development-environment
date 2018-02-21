@@ -15,44 +15,47 @@ Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V-All
 
 if (Test-PendingReboot) { Invoke-Reboot }
 
+choco feature enable -n allowGlobalConfirmation
 
 # Packages
-cinst -y ConEmu
+choco install ConEmu
 
 ## Git
-cinst -y git-credential-manager-for-windows #installs git
+choco install git-credential-manager-for-windows #installs git
 
 ## Node, npm
-cinst -y nodejs.install
+choco install nodejs.install
 refreshenv
 npm install -g npm-windows-upgrade
 
 ## Editors
-cinst -y visualstudiocode
-cinst -y atom
+choco install visualstudiocode
+choco install atom
 
 ## Basics
-cinst -y Firefox
-cinst -y Vivaldi
-cinst -y 7zip.install
-#cinst -y sysinternals
-cinst -y postman
-cinst -y fiddler4
-cinst -y openvpn
-cinst -y docker-for-windows
-cinst -y dbkoda
-cinst -y HeidiSql
-cinst -y linqpad
-cinst -y fake --pre
-cinst -y paket
+choco install Firefox
+choco install Vivaldi
+choco install 7zip.install
+choco install sysinternals
+choco install postman
+#choco install fiddler4
+choco install openvpn
+choco install docker-for-windows
+choco install dbkoda
+choco install HeidiSql
+choco install linqpad
+choco install paket
+choco install fake --pre
 
 
 ## Configure .NET environment
+
 if (Test-PendingReboot) { Invoke-Reboot }
-#cinst -y DotNet3.5
-#cinst -y visualstudio2017professional
-cinst -y visualstudio2017community
-cinst -y visualstudio2017-workload-netweb 
+
+#choco install DotNet3.5
+choco install visualstudio2017community
+choco install visualstudio2017-workload-netweb 
+choco install visualstudio2017-workload-netcoretools 
 
 ### TODO: remove unwanted apps
 #Get-Contents ./app_to_remove.txt | For-Each {  Get-AppxPackage $_ | Remove-AppxPackage }
