@@ -28,6 +28,11 @@ choco install nodejs.install
 refreshenv
 npm install -g npm-windows-upgrade
 
+## PHP
+choco install php
+refreshenv
+choco install composer
+
 ## Editors
 choco install visualstudiocode
 choco install atom
@@ -36,24 +41,19 @@ choco install atom
 choco install Firefox
 choco install Vivaldi
 choco install 7zip.install
-choco install sysinternals
+#choco install sysinternals
 choco install postman
 #choco install fiddler4
 choco install openvpn
 choco install docker-for-windows
 choco install dbkoda
-choco install HeidiSql
-choco install linqpad
 choco install paket
 choco install fake --pre
-
+choco install dotnetcore
 
 ## Configure .NET environment
-
-if (Test-PendingReboot) { Invoke-Reboot }
-
-#choco install DotNet3.5
-choco install visualstudio2017community
+choco install DotNet3.5 # for older legacy apps
+choco install visualstudio2017professional
 choco install visualstudio2017-workload-netweb 
 choco install visualstudio2017-workload-netcoretools 
 
