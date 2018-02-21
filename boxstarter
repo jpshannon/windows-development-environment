@@ -1,4 +1,4 @@
- Boxstarter options
+# Boxstarter options
 
 $Boxstarter.RebootOk=$true # Allow reboots?
 $Boxstarter.NoPassword=$false # Is this a machine with no login password?
@@ -52,6 +52,7 @@ if (Test-PendingReboot) { Invoke-Reboot }
 
 ## Basics
 cinst -y Firefox
+cinst -y Vivaldi
 cinst -y 7zip.install
 #cinst -y sysinternals
 cinst -y postman
@@ -61,12 +62,13 @@ cinst -y docker-for-windows
 cinst -y dbkoda
 cinst -y HeidiSql
 cinst -y linqpad
+cinst -y fake --pre
 cinst -y paket
 
 
 ## Configure .NET environment
 if (Test-PendingReboot) { Invoke-Reboot }
-cinst -y DotNet3.5
+#cinst -y DotNet3.5
 #cinst -y visualstudio2017professional
 cinst -y visualstudio2017community
 cinst -y visualstudio2017-workload-netweb 
