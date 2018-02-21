@@ -1,31 +1,84 @@
+ Boxstarter options
+
+$Boxstarter.RebootOk=$true # Allow reboots?
+$Boxstarter.NoPassword=$false # Is this a machine with no login password?
+$Boxstarter.AutoLogin=$true # Save my password securely and auto-login after a reboo
+
 # Configure Windows
 Set-WindowsExplorerOptions -EnableShowHiddenFilesFoldersDrives -EnableShowProtectedOSFiles -EnableShowFileExtensions -EnableShowFullPathInTitleBar
-reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\AppModelUnlock" /t REG_DWORD /f /v "AllowDevelopmentWithoutDevLicense" /d "1"
-reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\AppModelUnlock" /t REG_DWORD /f /v "AllowAllTrustedApps" /d "1"
-Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
+Set-TaskbarOptions -Size Small -Dock Bottom -Combine Full -Lock
 Update-ExecutionPolicy Unrestricted
+Disable-UAC
 
-cinst -y Microsoft-Hyper-V-All -source windowsFeatures
+Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
+Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V-All
+
+if (Test-PendingReboot) { Invoke-Reboot }
+
+
+### Fonts
+cinst -y inconsolata 
+cinst -y Hasklig
+cinst -y firacode
+cinst -y sourcecodepro
+cinst -y hackfont
+cinst -y robotofonts
+cinst -y envycoder
+cinst -y dejavufonts
+#cinst -y bitstreamverafonts
+#cinst -y noto
+#cinst -y opensans
+cinst -y font-awesome-font
 
 # Packages
-cinst -y hyper
+cinst -y ConEmu
+
+## Git
+cinst -y git.install
+cinst -y github
+cinst -y git-credential-manager-for-windows 
 
 ## Node, npm
 cinst -y nodejs.install
+npm install -g npm-windows-upgrade
 
-## Editors / IDEs
+## Editors
 cinst -y visualstudiocode
-cinst -y intellijidea-community
+cinst -y atom
 if (Test-PendingReboot) { Invoke-Reboot }
+
+## Fonts
+
 
 ## Basics
-cinst -y GoogleChrome
+cinst -y Firefox
 cinst -y 7zip.install
-cinst -y sysinternals
-cinst -y DotNet3.5
+#cinst -y sysinternals
+cinst -y postman
+cinst -y fiddler4
+cinst -y openvpn
+cinst -y docker-for-windows
+cinst -y dbkoda
+cinst -y HeidiSql
+cinst -y linqpad
+cinst -y paket
+
+
+## Configure .NET environment
 if (Test-PendingReboot) { Invoke-Reboot }
+cinst -y DotNet3.5
+#cinst -y visualstudio2017professional
+cinst -y visualstudio2017community
+cinst -y visualstudio2017-workload-netweb 
+
+### TODO: remove unwanted apps
+#Get-Contents ./app_to_remove.txt | For-Each {  Get-AppxPackage $_ | Remove-AppxPackage }
 
 # Let's get Updates, too
+Enable-UAC
+Enable-MicrosoftUpdate
 Install-WindowsUpdate -acceptEula
+Update-ExecutionPolicy Unrestricted
+if (Test-PendingReboot) { Invoke-Reboot }
 
-lxrun /install /
+START ms-windows-store://pdp/?ProductId=9nblggh4msv6
